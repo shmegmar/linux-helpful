@@ -1,0 +1,3 @@
+without docker
+
+$ ./jellyfin --datadir /mnt/8TB/jellyfin/jellyfin_10.8.10/jellydata/ --configdir /mnt/8TB/jellyfin/jellyfin_10.8.10/jellydata/config/ --cachedir /mnt/8TB/jellyfin/jellyfin_10.8.10/jellydata/cache/

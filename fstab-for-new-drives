@@ -1,0 +1,24 @@
+Quick tip: User-mounted filesystems with "exec"
+Second time I've run into this -- time to write it down.
+
+Trying to run debootstrap to install the new Ubuntu beta, I kept hitting a snag right at the beginning: debootstrap kept saying the filesystem was mounted with the wrong permissions, and it couldn't create an executable file or a device.
+
+I have lines for each of my spare filesystems in /etc/fstab, like this:
+
+/dev/sda4  /lucid  ext3  relatime,user,noauto  0   0
+
+That way, if I'm booted into one OS but I want to check a file from another, I can mount it without needing sudo, just by typing mount /lucid.
+
+Not being able to create executable files means it's mounted with the noexec flag. I checked another machine and saw that it was using lines like
+
+/dev/sda4  /lucid  ext3  exec,user,noauto  0   0
+
+I added the "exec," to fstab, unmounted and remounted ... and it was still mounted with noexec.
+
+Turns out on some Linux versions, making a filesystem user mountable turns off exec even if you've specified it explicitly. You have to add the exec after the user.
+
+But that still didn't make debootstrap happy, because it couldn't create a device. That's a separate fstab option, dev, and user implies nodev.
+
+So here's the fstab entry that finally worked:
+
+/dev/sda4  /lucid  ext3  relatime,user,exec,dev,noauto  0   0

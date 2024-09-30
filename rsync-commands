@@ -1,0 +1,10 @@
+rsync -r --progress source destination
+
+rsync -r --info=progress2 source destination
+
+rsync -r --progress 
+
+rsync -r --progress --checksum /source/directory/ /makeafolder
+
+
+rsync -r -av --links --progress --checksum-choice=xxh64 

@@ -1,0 +1,10 @@
+sudo install p7zip p7zip-plugins
+sudo install unrar
+
+extract
+7z x name.7z
+
+create
+7z a -p -mhe=on name.7z name/
+7z a archive_name target -p -mhe=on
+

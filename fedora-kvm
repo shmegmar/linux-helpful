@@ -1,0 +1,10 @@
+sudo dnf -y install bridge-utils libvirt virt-install qemu-kvm
+sudo dnf install libvirt-devel virt-top libguestfs-tools guestfs-tools
+
+sudo systemctl start libvirtd
+
+Then enable the service to start on boot
+
+sudo systemctl enable libvirtd
+
+virt-manager
